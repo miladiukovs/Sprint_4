@@ -1,4 +1,4 @@
-package pageobject;
+package PageObject;
 
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -6,9 +6,10 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class HomePageYandexSamokat {
+public class HomePage {
     private WebDriver driver;
 
+    //надо протестить
     private final String HOME_PAGE_URL = "https://qa-scooter.praktikum-services.ru/";
 
     //локатор стрелки в блоке "Вопросы о важном"
@@ -48,13 +49,13 @@ public class HomePageYandexSamokat {
     //локатор поля Дата доставки
     private By deliveryDateField = By.xpath(".//*[contains(@placeholder,'Когда привезти')]");
 
-    //локатор кнопки выбора даты в календаре
+    //локатор кнопки выбора даты
     private String datePicker = ".//div[@role='button' and text()='%s']";
 
-    //локатор поля Длительность аренды
+    //локатор поля Срок аренды
     private By durationField = By.xpath(".//div[@class='Dropdown-root']");
 
-    //локатор выбора длительности аренды
+    //локатор выбора срока аренды
     private String durationPicker = ".//div[@class='Dropdown-option' and text()='%s']";
 
     //локатор поля Комментарий
@@ -75,9 +76,6 @@ public class HomePageYandexSamokat {
     //локатор кнопки Посмотреть статус
     private By viewOrderStatusButton = By.xpath(".//button[text()='Посмотреть статус']");
 
-    private By scooterLogo = By.xpath(".//img[@alt='Scooter']");
-
-
     //локатор кнопки куки
     private By cookieButton = By.className("App_CookieButton__3cvqF");
 
@@ -87,9 +85,8 @@ public class HomePageYandexSamokat {
     public static String getOrderButtonHeader() {return orderButtonHeader; }
     public static String getOrderButtonBody() {return orderButtonBody; }
 
-
     //конструктор класса
-    public HomePageYandexSamokat(WebDriver driver){
+    public HomePage(WebDriver driver){
         this.driver = driver;
     }
 
@@ -116,22 +113,22 @@ public class HomePageYandexSamokat {
     }
 
 
-    public void fillUserData(String name, String surname, String address, String subwayStationName, String phone) {
-        driver.findElement(nameField).sendKeys(name);
-        driver.findElement(surnameField).sendKeys(surname);
-        driver.findElement(addressField).sendKeys(address);
+    public void fillUserData(String userName, String userLastname, String userAddress, String subwayStationName, String userPhone) {
+        driver.findElement(nameField).sendKeys(userName);
+        driver.findElement(surnameField).sendKeys(userLastname);
+        driver.findElement(addressField).sendKeys(userAddress);
         driver.findElement(subwayStationField).click();
         driver.findElement(By.xpath(String.format(subwayStationButton,subwayStationName))).click();
-        driver.findElement(phoneField).sendKeys(phone);
+        driver.findElement(phoneField).sendKeys(userPhone);
     }
 
     public void clickNextButton() {
         driver.findElement(nextButton).click();
     }
 
-    public void fillDeliveryDetails(String day, String duration, String colour, String comment) {
+    public void fillDeliveryDetails(String date, String duration, String colour, String comment) {
         driver.findElement(deliveryDateField).click();
-        driver.findElement(By.xpath(String.format(datePicker, day))).click();
+        driver.findElement(By.xpath(String.format(datePicker, date))).click();
         driver.findElement(durationField).click();
         driver.findElement(By.xpath(String.format(durationPicker, duration))).click();
         driver.findElement(By.id(colour)).click();
@@ -139,20 +136,14 @@ public class HomePageYandexSamokat {
         driver.findElement(completeOrderButton).click();
     }
 
-
     public void checkConfimationModalFormIsVisible() {
         Assert.assertTrue(driver.findElement(modalHeader).isDisplayed());
         driver.findElement(confirmButton).click();
     }
 
-
-    public void checkSuccesfulOrderFormIsVisible() {
+    public void checkSuccesfullOrderFormIsVisible() {
         Assert.assertTrue(driver.findElement(succesfulOrder).isDisplayed());
         driver.findElement(viewOrderStatusButton).click();
-    }
-
-    public void clickScooterLogo() {
-        driver.findElement(scooterLogo).click();
     }
 
 }

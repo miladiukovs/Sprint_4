@@ -1,3 +1,6 @@
+package org.example;
+
+import PageObject.HomePage;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Test;
@@ -5,16 +8,14 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import PageObject.HomePageYandexSamokat;
 
 @RunWith(Parameterized.class)
-public class FaqSectionTest {
+public class FAQTest {
     private WebDriver driver;
-
     private final int faqIndex;
     private final String expectedAnswer;
 
-    public FaqSectionTest(int faqIndex, String expectedAnswer) {
+    public FAQTest(int faqIndex, String expectedAnswer) {
         this.faqIndex = faqIndex;
         this.expectedAnswer = expectedAnswer;
     }
@@ -37,7 +38,7 @@ public class FaqSectionTest {
     @Test
     public void faqSectionTestChrome() {
         driver = new ChromeDriver();
-        HomePageYandexSamokat objHomePage = new HomePageYandexSamokat(driver);
+        HomePage objHomePage = new HomePage(driver);
 
         driver.get(objHomePage.getHOME_PAGE_URL());
 
