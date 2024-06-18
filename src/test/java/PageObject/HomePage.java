@@ -112,7 +112,6 @@ public class HomePage {
         driver.findElement(By.xpath(orderButton)).click();
     }
 
-
     public void fillUserData(String userName, String userLastname, String userAddress, String subwayStationName, String userPhone) {
         driver.findElement(nameField).sendKeys(userName);
         driver.findElement(surnameField).sendKeys(userLastname);
