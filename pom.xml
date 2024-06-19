@@ -7,7 +7,7 @@
   <version>1.0-SNAPSHOT</version>
   <packaging>jar</packaging>
 
-  <userName>FinalProject4</userName>
+  <name>FinalProject4</name>
   <url>http://maven.apache.org</url>
 
   <properties>
