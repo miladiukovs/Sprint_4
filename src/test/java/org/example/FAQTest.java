@@ -1,10 +1,7 @@
 package org.example;
 
-
 import PageObject.HomePage;
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.*;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.openqa.selenium.WebDriver;
@@ -12,7 +9,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 @RunWith(Parameterized.class)
 public class FAQTest {
-    private WebDriver driver;
+    private static WebDriver driver;
     private final int faqIndex;
     private final String expectedAnswer;
 
@@ -35,10 +32,13 @@ public class FAQTest {
         };
     }
 
+    @BeforeClass
+    public static void setUp() {
+        driver = new ChromeDriver();
+    }
 
     @Test
     public void faqSectionTestChrome() {
-        driver = new ChromeDriver();
         HomePage objHomePage = new HomePage(driver);
 
         driver.get(objHomePage.getHOME_PAGE_URL());
@@ -47,8 +47,10 @@ public class FAQTest {
         Assert.assertEquals(expectedAnswer, objHomePage.getFaqText(faqIndex));
     }
 
-    @After
-    public void tearDown(){
-        driver.quit();
+    @AfterClass
+    public static void tearDown() {
+        if (driver != null) {
+            driver.quit();
+        }
     }
 }
