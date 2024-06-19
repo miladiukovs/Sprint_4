@@ -28,16 +28,16 @@ public class HomePage {
     private static String orderButtonBody = "Home_FinishButton__1_cWm";
 
     //локатор поля Имя
-    private By nameField = By.xpath(".//*[contains(@placeholder,'Имя')]");
+    private By userNameField = By.xpath(".//*[contains(@placeholder,'Имя')]");
 
     //локатор поля Фамилия
-    private By surnameField = By.xpath(".//*[contains(@placeholder,'Фамилия')]");
+    private By userLastnameField = By.xpath(".//*[contains(@placeholder,'Фамилия')]");
 
     //локатор поля Адрес
-    private By addressField = By.xpath(".//*[contains(@placeholder,'куда привезти')]");
+    private By userAddressField = By.xpath(".//*[contains(@placeholder,'куда привезти')]");
 
     //локатор поля Телефон
-    private By phoneField = By.xpath(".//*[contains(@placeholder,'Телефон')]");
+    private By userPhoneField = By.xpath(".//*[contains(@placeholder,'Телефон')]");
 
     //локатор поля Метро
     private By subwayStationField = By.xpath(".//*[contains(@placeholder,'метро')]");
@@ -113,12 +113,12 @@ public class HomePage {
     }
 
     public void fillUserData(String userName, String userLastname, String userAddress, String subwayStationName, String userPhone) {
-        driver.findElement(nameField).sendKeys(userName);
-        driver.findElement(surnameField).sendKeys(userLastname);
-        driver.findElement(addressField).sendKeys(userAddress);
+        driver.findElement(userNameField).sendKeys(userName);
+        driver.findElement(userLastnameField).sendKeys(userLastname);
+        driver.findElement(userAddressField).sendKeys(userAddress);
         driver.findElement(subwayStationField).click();
         driver.findElement(By.xpath(String.format(subwayStationButton,subwayStationName))).click();
-        driver.findElement(phoneField).sendKeys(userPhone);
+        driver.findElement(userPhoneField).sendKeys(userPhone);
     }
 
     public void clickNextButton() {

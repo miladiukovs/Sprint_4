@@ -6,12 +6,13 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.junit.Assert;
 
 @RunWith(Parameterized.class)
-public class FAQTest {
+public class FAQTest extends Object {
     private static WebDriver driver;
-    private final int faqIndex;
-    private final String expectedAnswer;
+    private int faqIndex;
+    private String expectedAnswer;
 
     public FAQTest(int faqIndex, String expectedAnswer) {
         this.faqIndex = faqIndex;
